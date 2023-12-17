@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'username',
+        'team_id',
         'role'
     ];
 
@@ -36,4 +37,12 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
+    public function team(){
+        return $this->belongsTo(Team::class);
+    }
+
+    public function quizEvents(){
+        return $this->hasMany(QuizEvent::class);
+    }
 }
