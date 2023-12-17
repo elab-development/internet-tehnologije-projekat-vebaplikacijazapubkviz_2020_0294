@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\QuizEventController;
+use App\Http\Controllers\QuizEventTeamController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
@@ -41,6 +42,11 @@ Route::resource('/quiz-events', QuizEventController::class)->only(['index', 'sho
 Route::resource('/quiz-events', QuizEventController::class)->only(['store']);
 Route::match(['put', 'patch'],'/quiz-events/{quizEvent}', [QuizEventController::class, 'update'])->name('quit-events.update');
 Route::delete('/quiz-events/{quizEvent}', [QuizEventController::class, 'destroy'])->name('quit-events.destroy');
+
+Route::get('/scores/seasons/{seasonId}', [QuizEventTeamController::class, 'scoresInASeason'])->name('scores.seasons.show');
+Route::get('/scores/seasons/{seasonId}/teams/{teamId}', [QuizEventTeamController::class, 'scoresInASeasonByATeam'])->name('scores.seasons.teams.show');
+Route::post('/scores', [QuizEventTeamController::class, 'store'])->name('scores.store');
+Route::put('scores/teams/{teamId}/quiz-events/{quizEventId}', [QuizEventTeamController::class, 'update']);
 
 
 
