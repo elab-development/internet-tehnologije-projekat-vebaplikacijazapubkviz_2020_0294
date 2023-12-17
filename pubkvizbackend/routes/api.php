@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\QuizEventController;
 use App\Http\Controllers\QuizEventTeamController;
 use App\Http\Controllers\SeasonController;
@@ -48,6 +49,6 @@ Route::get('/scores/seasons/{seasonId}/teams/{teamId}', [QuizEventTeamController
 Route::post('/scores', [QuizEventTeamController::class, 'store'])->name('scores.store');
 Route::put('scores/teams/{teamId}/quiz-events/{quizEventId}', [QuizEventTeamController::class, 'update']);
 
-
+Route::get('/export-ical/{season_id}', [ExportController::class, 'exportICalendar'])->name('export-ical');
 
 
