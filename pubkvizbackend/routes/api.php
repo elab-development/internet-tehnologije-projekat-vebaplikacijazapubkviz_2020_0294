@@ -3,6 +3,7 @@
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\QuizEventController;
 use App\Http\Controllers\QuizEventTeamController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamUserController;
@@ -53,5 +54,10 @@ Route::put('scores/teams/{teamId}/quiz-events/{quizEventId}', [QuizEventTeamCont
 Route::resource('/teams.users', TeamUserController::class)->only(['index']);
 
 Route::get('/export-ical/{season_id}', [ExportController::class, 'exportICalendar'])->name('export-ical');
+
+Route::get('/search/users', [SearchController::class, 'searchUsers'])->name('search.users');
+Route::get('/search/teams', [SearchController::class, 'searchTeams'])->name('search.teams');
+Route::get('/search/quiz-events', [SearchController::class, 'searchQuizEvents'])->name('search.quiz-events');
+Route::get('/search/seasons', [SearchController::class, 'searchSeasons'])->name('search.seasons');
 
 
