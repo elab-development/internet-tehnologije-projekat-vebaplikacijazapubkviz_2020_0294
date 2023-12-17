@@ -5,6 +5,7 @@ use App\Http\Controllers\QuizEventController;
 use App\Http\Controllers\QuizEventTeamController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\TeamUserController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,8 @@ Route::get('/scores/seasons/{seasonId}', [QuizEventTeamController::class, 'score
 Route::get('/scores/seasons/{seasonId}/teams/{teamId}', [QuizEventTeamController::class, 'scoresInASeasonByATeam'])->name('scores.seasons.teams.show');
 Route::post('/scores', [QuizEventTeamController::class, 'store'])->name('scores.store');
 Route::put('scores/teams/{teamId}/quiz-events/{quizEventId}', [QuizEventTeamController::class, 'update']);
+
+Route::resource('/teams.users', TeamUserController::class)->only(['index']);
 
 Route::get('/export-ical/{season_id}', [ExportController::class, 'exportICalendar'])->name('export-ical');
 
