@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\QuizEventController;
 use App\Http\Controllers\QuizEventTeamController;
@@ -62,3 +63,14 @@ Route::get('/search/quiz-events', [SearchController::class, 'searchQuizEvents'])
 Route::get('/search/seasons', [SearchController::class, 'searchSeasons'])->name('search.seasons');
 
 Route::get('/random-question', [WebServiceController::class, 'randomQuestion'])->name('random-question');
+
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/profile', function(Request $request) {
+        return auth()->user();
+    });
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
