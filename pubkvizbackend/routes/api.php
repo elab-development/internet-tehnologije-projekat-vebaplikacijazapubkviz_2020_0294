@@ -8,6 +8,7 @@ use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamUserController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -60,4 +61,4 @@ Route::get('/search/teams', [SearchController::class, 'searchTeams'])->name('sea
 Route::get('/search/quiz-events', [SearchController::class, 'searchQuizEvents'])->name('search.quiz-events');
 Route::get('/search/seasons', [SearchController::class, 'searchSeasons'])->name('search.seasons');
 
-
+Route::get('/random-question', [WebServiceController::class, 'randomQuestion'])->name('random-question');
