@@ -70,7 +70,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', function(Request $request) {
         return auth()->user();
-    });
+    })->middleware('checkRole:admin,moderator');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
