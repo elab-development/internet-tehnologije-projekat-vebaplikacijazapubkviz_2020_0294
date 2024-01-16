@@ -6,6 +6,9 @@ import { RegisterPage } from './components/RegisterPage';
 import { LoginPage } from './components/LoginPage';
 import { QuizEvents } from './components/QuizEvents';
 import HomePage from './components/HomePage';
+import Footer from './components/Footer';
+
+
 
 function App() {
   return (
@@ -30,6 +33,8 @@ function App() {
         <Route path="/events" element={<QuizEvents />} />
        
       </Routes>
+      <Footer/>
+      
     </BrowserRouter>
 
   );
