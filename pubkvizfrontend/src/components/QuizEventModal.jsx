@@ -4,13 +4,16 @@ import { IoMdClose } from "react-icons/io";
 import axios from "axios";
 import { MdDeleteForever } from "react-icons/md";
 
+axios.defaults.withCredentials = true;
+axios.defaults.withXSRFToken = true;
+
 const QuizEventModal = ({ event, closeModal, onDelete }) => {
   const formattedStartDate = moment(event.start).format("MMMM Do YYYY, HH:mm");
   const formattedEndDate = moment(event.end).format("MMMM Do YYYY, HH:mm");
 
   const handleDelete = () => {
     axios
-      .delete(`http://127.0.0.1:8000/api/quiz-events/${event.id}`, {
+      .delete(`http://localhost:8000/api/quiz-events/${event.id}`, {
         headers: {
           Authorization:
             "Bearer " + window.sessionStorage.getItem("auth_token"),
